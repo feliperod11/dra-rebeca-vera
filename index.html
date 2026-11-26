@@ -1,0 +1,412 @@
+<title>Dra. Rebeca Vera</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Dra. Rebeca Vera, cirujana dentista. Odontología general y estética facial en Clínica Blossom, España 460, Oficina 703, Temuco. Atención Fonasa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Manrope:wght@400;500;600&display=swap">
+<style>
+/* Layout: sobria columna editorial; hero a dos columnas con ficha de credenciales, tratamientos como filas con regla fina, banda de contacto en tinta profunda. */
+:root {
+  --bg: #F1F3F1;
+  --surface: #FAFBFA;
+  --ink: #1B2321;
+  --muted: #5B6562;
+  --line: #D6DBD8;
+  --accent: #7A4A5C;
+  --accent-soft: #EADDE2;
+  --band-bg: #1B2321;
+  --band-fg: #EEF1EF;
+  --band-muted: #A7B0AD;
+  --band-line: #34403D;
+  --band-accent: #D9AFC0;
+  --font-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --font-body: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --step-0: 1rem;
+  --step-1: 1.125rem;
+  --step-2: 1.5rem;
+  --step-3: 2.25rem;
+  --step-4: clamp(2.5rem, 6vw, 4.5rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131816; --surface: #1A201E; --ink: #E8ECEA; --muted: #A1AAA7; --line: #2C3532;
+    --accent: #D3A6B8; --accent-soft: #3A2A31;
+    --band-bg: #0E1211; --band-fg: #EEF1EF; --band-muted: #9AA3A0; --band-line: #2A3230; --band-accent: #D9AFC0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131816; --surface: #1A201E; --ink: #E8ECEA; --muted: #A1AAA7; --line: #2C3532;
+  --accent: #D3A6B8; --accent-soft: #3A2A31;
+  --band-bg: #0E1211; --band-fg: #EEF1EF; --band-muted: #9AA3A0; --band-line: #2A3230; --band-accent: #D9AFC0;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) { .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h1 em, h2 em { font-style: italic; color: var(--accent); }
+p { margin: 0; }
+.eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.16em; font-weight: 600; color: var(--muted); }
+
+/* Botones */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.85rem 1.35rem; border-radius: 999px;
+  font: 600 0.95rem/1 var(--font-body); text-decoration: none; cursor: pointer;
+  border: 1px solid transparent; transition: transform .15s ease, background-color .15s ease;
+}
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn-primary { background: var(--accent); color: var(--surface); }
+.btn-primary:hover { transform: translateY(-1px); }
+.btn-ghost { border-color: var(--line); color: var(--ink); background: transparent; }
+.btn-ghost:hover { border-color: var(--ink); }
+
+/* Encabezado */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.header-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.9rem; }
+.brand { text-decoration: none; display: flex; flex-direction: column; line-height: 1.15; }
+.brand-name { font-family: var(--font-display); font-size: 1.3rem; }
+.brand-role { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.nav { display: flex; align-items: center; gap: 1.75rem; }
+.nav a.link { text-decoration: none; font-size: 0.9rem; color: var(--muted); }
+.nav a.link:hover { color: var(--ink); }
+.nav .btn { padding: 0.65rem 1.1rem; font-size: 0.85rem; }
+@media (max-width: 760px) { .nav a.link { display: none; } }
+@media (max-width: 420px) { .nav .btn span { display: none; } .nav .btn { padding: 0.65rem; } }
+
+/* Hero */
+.hero { padding-block: clamp(3rem, 8vw, 6.5rem) clamp(3rem, 6vw, 5rem); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } .portrait { max-width: 500px; justify-self: start; } }
+.hero-copy { display: flex; flex-direction: column; gap: 1.5rem; min-width: 0; }
+.hero h1 { font-size: var(--step-4); }
+.hero .lead { font-size: var(--step-1); color: var(--muted); max-width: 34rem; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; padding-top: 0.5rem; }
+
+.credentials {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+  padding: 1.75rem; min-width: 0;
+}
+.credentials h2 { font-size: 0.75rem; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.16em; font-weight: 600; color: var(--muted); margin-bottom: 0.5rem; }
+.credentials dl { margin: 0; display: grid; }
+.credentials .row { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; padding-block: 0.85rem; border-top: 1px solid var(--line); }
+.credentials .row:first-child { border-top: 0; }
+.credentials dt { font-size: 0.8rem; color: var(--muted); }
+.credentials dd { margin: 0; font-size: 0.95rem; font-weight: 500; }
+.fonasa { display: inline-block; background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: 0.8rem; padding: 0.15rem 0.55rem; border-radius: 999px; letter-spacing: 0.04em; }
+
+.portrait { margin: 0; position: relative; min-width: 0; width: 100%; max-width: 500px; justify-self: end; }
+.portrait img { display: block; width: 100%; aspect-ratio: 960 / 1112; object-fit: cover; border-radius: 4px; }
+.portrait figcaption { position: absolute; left: 1rem; bottom: 1rem; right: 1rem; background: var(--surface); color: var(--ink); border-radius: 4px; padding: 0.75rem 1rem; font-size: 0.85rem; display: flex; flex-direction: column; line-height: 1.35; }
+.portrait figcaption strong { font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; }
+.portrait figcaption span { color: var(--muted); }
+.about-side { display: flex; flex-direction: column; gap: 2rem; min-width: 0; }
+.group + .group { margin-top: 3rem; }
+.group-title { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-bottom: 0.75rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--ink); }
+.group-title h3 { font-size: var(--step-2); font-style: italic; color: var(--accent); }
+.group-title span { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.treatment h4 { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; line-height: 1.15; margin: 0; text-wrap: balance; }
+
+/* Secciones */
+section.block { padding-block: clamp(3.5rem, 8vw, 6rem); border-top: 1px solid var(--line); }
+.section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(1.5rem, 4vw, 4rem); }
+@media (max-width: 860px) { .section-head { grid-template-columns: minmax(0, 1fr); } }
+.section-head h2 { font-size: var(--step-3); }
+
+/* Sobre mí */
+.about-body { display: flex; flex-direction: column; gap: 1.25rem; max-width: 40rem; min-width: 0; }
+.about-body p { font-size: var(--step-1); }
+.pull {
+  margin: 1.5rem 0 0; padding: 1.75rem 0 0; border-top: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.pull blockquote { margin: 0; font-family: var(--font-display); font-style: italic; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.05; color: var(--accent); }
+.pull figcaption { font-size: 0.85rem; color: var(--muted); }
+
+/* Tratamientos */
+.treatments { list-style: none; margin: 0; padding: 0; min-width: 0; }
+.treatment {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 0.5rem 2rem;
+  padding-block: 1.5rem; border-top: 1px solid var(--line);
+}
+.treatment:first-child { border-top: 0; padding-top: 0; }
+@media (max-width: 640px) { .treatment { grid-template-columns: minmax(0, 1fr); } }
+.treatment h3 { font-size: var(--step-2); }
+.treatment p { color: var(--muted); }
+.tooth-tag { display: block; margin-top: 0.5rem; font-size: 0.78rem; letter-spacing: 0.04em; color: var(--accent); font-variant-numeric: tabular-nums; }
+.note { margin-top: 2rem; padding: 1.25rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
+.note p { font-size: 0.95rem; }
+
+/* Contacto */
+.contact { background: var(--band-bg); color: var(--band-fg); padding-block: clamp(3.5rem, 8vw, 6rem); }
+.contact h2 { font-size: var(--step-4); }
+.contact h2 em { color: var(--band-accent); }
+.contact .eyebrow { color: var(--band-muted); }
+.contact-top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 2rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--band-line); }
+.contact-top > div { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.contact-top p { color: var(--band-muted); max-width: 30rem; }
+.contact .btn-primary { background: var(--band-accent); color: var(--band-bg); font-size: 1rem; padding: 1rem 1.6rem; }
+.contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+@media (max-width: 860px) { .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .contact-grid { grid-template-columns: minmax(0, 1fr); } }
+.item { padding: 1.5rem 1.5rem 1.5rem 0; border-bottom: 1px solid var(--band-line); display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
+.item .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--band-muted); font-weight: 600; }
+.item .value { font-size: 1.05rem; overflow-wrap: anywhere; }
+.item .value a { text-decoration: underline; text-decoration-color: var(--band-line); text-underline-offset: 4px; }
+.item .value a:hover { text-decoration-color: var(--band-accent); }
+.copy {
+  align-self: flex-start; margin-top: 0.35rem; background: transparent; color: var(--band-accent);
+  border: 1px solid var(--band-line); border-radius: 999px; padding: 0.3rem 0.8rem;
+  font: 600 0.75rem/1.2 var(--font-body); cursor: pointer;
+}
+.copy:hover { border-color: var(--band-accent); }
+
+footer { background: var(--band-bg); color: var(--band-muted); font-size: 0.8rem; }
+footer .wrap { padding-block: 1.5rem 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; border-top: 1px solid var(--band-line); }
+
+/* Botón flotante en móvil */
+.float-wa {
+  position: fixed; z-index: 6;
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  width: 56px; height: 56px; border-radius: 50%;
+  display: none; align-items: center; justify-content: center;
+  background: var(--accent); color: var(--surface);
+  box-shadow: 0 6px 20px rgba(0,0,0,.18);
+}
+.float-wa svg { width: 24px; height: 24px; }
+@media (max-width: 760px) { .float-wa { display: inline-flex; } }
+
+.reveal { animation: rise .7s ease both; }
+.reveal.d2 { animation-delay: .12s; }
+@keyframes rise { from { transform: translateY(10px); } to { transform: none; } }
+</style>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="#inicio">
+      <span class="brand-name">Dra. Rebeca Vera</span>
+      <span class="brand-role">Cirujana Dentista</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a class="link" href="#sobre-mi">Sobre mí</a>
+      <a class="link" href="#tratamientos">Tratamientos</a>
+      <a class="link" href="#contacto">Contacto</a>
+      <a class="btn btn-primary wa-link" href="#" target="_blank" rel="noopener" aria-label="Agendar por WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5Z"/></svg>
+        <span>Agendar hora</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Odontología y estética facial · Temuco</p>
+        <h1>Cuidado <em>delicado</em> para tu sonrisa y tu rostro.</h1>
+        <p class="lead">Cuido tu sonrisa y tu rostro con una atención delicada y cercana, para que cada visita sea tranquila y salgas contento con el resultado.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary wa-link" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5Z"/></svg>
+            Agendar por WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="#tratamientos">Ver tratamientos</a>
+        </div>
+      </div>
+
+      <figure class="portrait reveal d2">
+        <img src="rebeca-original.jpg" alt="La Dra. Rebeca Vera sonriendo en su consulta de Clínica Blossom" width="960" height="1112">
+        <figcaption><strong>Dra. Rebeca Vera</strong><span>Cirujana Dentista · Clínica Blossom, Temuco</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="sobre-mi">
+    <div class="wrap section-head">
+      <div class="about-side">
+        <div>
+          <p class="eyebrow">Sobre mí</p>
+          <h2>Hola, soy <em>Rebeca.</em></h2>
+        </div>
+        <aside class="credentials" aria-labelledby="ficha">
+          <h2 id="ficha">Ficha profesional</h2>
+          <dl>
+            <div class="row"><dt>Título</dt><dd>Cirujana Dentista, Universidad Mayor</dd></div>
+            <div class="row"><dt>Diplomado</dt><dd>Estética, Universidad de Chile</dd></div>
+            <div class="row"><dt>Experiencia</dt><dd>2 años en atención clínica</dd></div>
+            <div class="row"><dt>Previsión</dt><dd><span class="fonasa">FONASA</span></dd></div>
+            <div class="row"><dt>Horario</dt><dd>Lunes a viernes, 8:00 a 18:30 hrs</dd></div>
+          </dl>
+        </aside>
+      </div>
+      <div class="about-body">
+        <p>Soy cirujana dentista titulada de la Universidad Mayor y tengo un Diplomado en Estética de la Universidad de Chile. Llevo dos años atendiendo pacientes en odontología general y en estética facial, en Clínica Blossom, Temuco.</p>
+        <p>Trabajo con calma y con mucha delicadeza. Me importa que te sientas cómodo, que entiendas cada paso del tratamiento y que tengas espacio para preguntar lo que necesites. Ir al dentista no tiene por qué ser una experiencia incómoda.</p>
+        <figure class="pull">
+          <blockquote>“Mano suavecita”</blockquote>
+          <figcaption>Lo que más me dicen mis pacientes al terminar la sesión.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="tratamientos">
+    <div class="wrap section-head">
+      <div>
+        <p class="eyebrow">Tratamientos</p>
+        <h2>Sonrisa y <em>rostro</em></h2>
+      </div>
+      <div style="min-width:0">
+        <div class="group">
+          <div class="group-title"><h3>Estética facial</h3><span>4 tratamientos</span></div>
+          <ul class="treatments">
+            <li class="treatment">
+              <h4>Toxina botulínica (botox)</h4>
+              <p>Suaviza las arrugas de expresión con un resultado natural. Puedes tratar las tres zonas clásicas (frente, entrecejo y patas de gallo) o hacer un tratamiento full face, que abarca otras zonas del rostro para un rejuvenecimiento más completo.
+                <span class="tooth-tag">Tres zonas o full face</span></p>
+            </li>
+            <li class="treatment">
+              <h4>Ácido hialurónico</h4>
+              <p>Devuelve volumen e hidratación, y define zonas como labios, surcos y contorno facial.</p>
+            </li>
+            <li class="treatment">
+              <h4>Bioestimuladores</h4>
+              <p>Estimulan la producción natural de colágeno para mejorar la firmeza y la calidad de la piel.</p>
+            </li>
+            <li class="treatment">
+              <h4>Mesoterapia</h4>
+              <p>Microinyecciones de vitaminas y activos que hidratan y revitalizan la piel.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="group">
+          <div class="group-title"><h3>Odontología general</h3><span>3 tratamientos</span></div>
+          <ul class="treatments">
+            <li class="treatment">
+              <h4>Limpieza dental</h4>
+              <p>Destartraje y pulido para retirar el sarro y las manchas superficiales, y mantener sanas tus encías.
+                <span class="tooth-tag">Se recomienda cada 6 meses</span></p>
+            </li>
+            <li class="treatment">
+              <h4>Blanqueamiento dental</h4>
+              <p>Aclara el tono de tus dientes de forma controlada, cuidando la sensibilidad en todo momento.</p>
+            </li>
+            <li class="treatment">
+              <h4>Extracciones</h4>
+              <p>Extracción de piezas dentales con anestesia y mucho cuidado, con indicaciones claras para tu recuperación.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="note">
+          <p>¿No sabes qué tratamiento necesitas? Escríbeme y lo vemos juntos en la evaluación.</p>
+          <a class="btn btn-ghost wa-link" href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <div class="contact-top">
+        <div>
+          <p class="eyebrow">Contacto</p>
+          <h2>Agenda tu <em>hora.</em></h2>
+          <p>Escríbeme por WhatsApp y te respondo con los horarios disponibles. Atiendo pacientes Fonasa.</p>
+        </div>
+        <a class="btn btn-primary wa-link" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5Z"/></svg>
+          Agendar por WhatsApp
+        </a>
+      </div>
+
+      <div class="contact-grid">
+        <div class="item">
+          <span class="label">WhatsApp</span>
+          <span class="value" id="phone">+56 9 5841 1626</span>
+          <button class="copy" type="button" id="copy-phone" data-copy="+56 9 5841 1626" data-target="phone">Copiar número</button>
+        </div>
+        <div class="item">
+          <span class="label">Dirección</span>
+          <span class="value">Clínica Blossom<br>España 460, Oficina 703, Temuco</span>
+          <a class="copy" href="https://www.google.com/maps/search/?api=1&amp;query=Espa%C3%B1a+460%2C+Temuco%2C+Chile" target="_blank" rel="noopener" style="text-decoration:none">Ver en el mapa</a>
+        </div>
+        <div class="item">
+          <span class="label">Horario</span>
+          <span class="value">Lunes a viernes<br>8:00 a 18:30 hrs</span>
+        </div>
+        <div class="item">
+          <span class="label">Previsión</span>
+          <span class="value">Atendemos Fonasa</span>
+        </div>
+        <div class="item">
+          <span class="label">Instagram</span>
+          <span class="value"><a href="https://www.instagram.com/dra.rebecavera/" target="_blank" rel="noopener">@dra.rebecavera</a></span>
+        </div>
+        <div class="item">
+          <span class="label">Correo</span>
+          <span class="value" id="email">draverarebeca@gmail.com</span>
+          <button class="copy" type="button" id="copy-email" data-copy="draverarebeca@gmail.com" data-target="email">Copiar correo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Dra. Rebeca Vera · Cirujana Dentista · Universidad Mayor</span>
+    <span>Clínica Blossom · España 460, Of. 703, Temuco</span>
+  </div>
+</footer>
+
+<a class="float-wa wa-link" href="#" target="_blank" rel="noopener" aria-label="Agendar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5Z"/></svg>
+</a>
+
+<script>
+  var WA = "https://wa.me/56958411626?text=" + encodeURIComponent("Hola Dra. Vera, me gustaría agendar una hora de evaluación.");
+  document.querySelectorAll(".wa-link").forEach(function (a) { a.href = WA; });
+
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    var original = btn.textContent;
+    btn.addEventListener("click", function () {
+      var text = btn.getAttribute("data-copy");
+      var done = function () { btn.textContent = "Copiado"; setTimeout(function () { btn.textContent = original; }, 1800); };
+      var fallback = function () {
+        var el = document.getElementById(btn.getAttribute("data-target"));
+        var range = document.createRange(); range.selectNodeContents(el);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+        btn.textContent = "Texto seleccionado";
+        setTimeout(function () { btn.textContent = original; }, 1800);
+      };
+      try {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } catch (e) { fallback(); }
+    });
+  });
+</script>
