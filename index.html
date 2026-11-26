@@ -112,16 +112,13 @@ p { margin: 0; }
 .hero .lead { font-size: var(--step-1); color: var(--muted); max-width: 34rem; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; padding-top: 0.5rem; }
 
-.credentials {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
-  padding: 1.75rem; min-width: 0;
-}
-.credentials h2 { font-size: 0.75rem; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.16em; font-weight: 600; color: var(--muted); margin-bottom: 0.5rem; }
-.credentials dl { margin: 0; display: grid; }
-.credentials .row { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; padding-block: 0.85rem; border-top: 1px solid var(--line); }
-.credentials .row:first-child { border-top: 0; }
-.credentials dt { font-size: 0.8rem; color: var(--muted); }
-.credentials dd { margin: 0; font-size: 0.95rem; font-weight: 500; }
+.credentials { min-width: 0; }
+.credentials h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.credentials dl { margin: 0; display: flex; flex-direction: column; gap: 1.35rem; padding-left: 1.25rem; border-left: 1px solid var(--accent-soft); }
+.credentials .row { display: flex; flex-direction: column; gap: 0.2rem; }
+.credentials dt { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.credentials dd { margin: 0; font-family: var(--font-display); font-size: 1.15rem; line-height: 1.3; }
+.credentials .fonasa { font-family: var(--font-body); }
 .fonasa { display: inline-block; background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: 0.8rem; padding: 0.15rem 0.55rem; border-radius: 999px; letter-spacing: 0.04em; }
 
 .portrait { margin: 0; position: relative; min-width: 0; width: 100%; max-width: 500px; justify-self: end; }
@@ -227,8 +224,15 @@ footer .wrap { padding-block: 1.5rem 2rem; display: flex; flex-wrap: wrap; gap: 
   content: ""; display: block; width: 48px; height: 1px; background: var(--accent); margin-top: 1.25rem;
 }
 .voice:nth-child(even)::after { margin-left: auto; }
-.voice { transition: opacity 1.1s ease, transform 1.1s cubic-bezier(.2, .7, .1, 1); }
-.voice.is-waiting { opacity: 0; transform: translate(var(--from-x), 36px); }
+.voice .w { display: inline-block; transition: opacity .8s ease, transform .9s cubic-bezier(.2, .7, .1, 1), filter .8s ease; transition-delay: calc(var(--i, 0) * 70ms); }
+.voice::after { transition: transform 1s cubic-bezier(.6, 0, .2, 1) .35s; transform-origin: left; }
+.voice:nth-child(even)::after { transform-origin: right; }
+.voice.is-waiting .w { opacity: 0; transform: translateY(.55em); filter: blur(6px); }
+.voice.is-waiting::after { transform: scaleX(0); }
+
+/* Aparición al bajar */
+.sr { transition: opacity 1s ease, transform 1s cubic-bezier(.2, .7, .1, 1), filter 1s ease; }
+.sr.sr-wait { opacity: 0; transform: translateY(36px); filter: blur(4px); }
 @media (max-width: 640px) {
   .voice, .voice:nth-child(even) { align-self: stretch; text-align: left; }
   .voice:nth-child(even)::after { margin-left: 0; }
@@ -507,24 +511,60 @@ footer .wrap { padding-block: 1.5rem 2rem; display: flex; flex-wrap: wrap; gap: 
     });
   });
 
-  // Testimonios que aparecen al bajar
+  // Animaciones al bajar: secciones y frases de pacientes
   (function () {
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce || !("IntersectionObserver" in window)) return;
+
+    // Separar cada frase en palabras para que aparezcan una tras otra
+    document.querySelectorAll(".voice blockquote").forEach(function (q) {
+      var i = 0;
+      (function wrap(node) {
+        Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+          if (child.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            child.textContent.split(/(\s+)/).forEach(function (part) {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+              var s = document.createElement("span");
+              s.className = "w"; s.textContent = part; s.style.setProperty("--i", i++);
+              frag.appendChild(s);
+            });
+            node.replaceChild(frag, child);
+          } else if (child.nodeType === 1) { wrap(child); }
+        });
+      })(q);
+    });
+
+    var selectors = [
+      ".section-head > div > .eyebrow", ".section-head h2", ".about-body > p", ".credentials .row",
+      ".group-title", ".treatment", ".note", ".voices-head > *",
+      ".contact-top > div > *", ".contact-top > .btn", ".item"
+    ];
+    var items = document.querySelectorAll(selectors.join(","));
     var voices = document.querySelectorAll(".voice");
+    var limit = window.innerHeight * 0.92;
+    var batch = 0, batchTimer = null;
+
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.remove("is-waiting");
-          io.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        io.unobserve(el);
+        if (el.classList.contains("voice")) { el.classList.remove("is-waiting"); return; }
+        el.style.transitionDelay = (batch++ * 90) + "ms";
+        clearTimeout(batchTimer);
+        batchTimer = setTimeout(function () { batch = 0; }, 120);
+        el.classList.remove("sr-wait");
       });
-    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.2 });
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0 });
+
+    items.forEach(function (el) {
+      el.classList.add("sr");
+      if (el.getBoundingClientRect().top > limit) { el.classList.add("sr-wait"); io.observe(el); }
+    });
     voices.forEach(function (v) {
-      if (v.getBoundingClientRect().top > window.innerHeight) {
-        v.classList.add("is-waiting");
-        io.observe(v);
-      }
+      if (v.getBoundingClientRect().top > limit) { v.classList.add("is-waiting"); io.observe(v); }
     });
   })();
 </script>
