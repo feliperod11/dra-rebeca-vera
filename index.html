@@ -210,6 +210,30 @@ footer .wrap { padding-block: 1.5rem 2rem; display: flex; flex-wrap: wrap; gap: 
 .reveal.d2 { animation-delay: .12s; }
 @keyframes rise { from { transform: translateY(10px); } to { transform: none; } }
 
+/* Testimonios */
+.voices-head { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+.voices-head h2 { font-size: var(--step-3); }
+.voices-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(2.5rem, 7vw, 5rem); }
+.voice { max-width: 34ch; --from-x: -28px; }
+.voice:nth-child(even) { align-self: flex-end; text-align: right; --from-x: 28px; }
+.voice blockquote {
+  margin: 0; font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(1.75rem, 4.6vw, 3.25rem); line-height: 1.12; text-wrap: balance;
+}
+.voice blockquote::before { content: "“"; color: var(--accent); }
+.voice blockquote::after { content: "”"; color: var(--accent); }
+.voice blockquote em { font-style: italic; color: var(--accent); }
+.voice::after {
+  content: ""; display: block; width: 48px; height: 1px; background: var(--accent); margin-top: 1.25rem;
+}
+.voice:nth-child(even)::after { margin-left: auto; }
+.voice { transition: opacity 1.1s ease, transform 1.1s cubic-bezier(.2, .7, .1, 1); }
+.voice.is-waiting { opacity: 0; transform: translate(var(--from-x), 36px); }
+@media (max-width: 640px) {
+  .voice, .voice:nth-child(even) { align-self: stretch; text-align: left; }
+  .voice:nth-child(even)::after { margin-left: 0; }
+}
+
 /* Apertura */
 .intro-screen {
   position: fixed; inset: 0; z-index: 50;
@@ -328,11 +352,23 @@ footer .wrap { padding-block: 1.5rem 2rem; display: flex; flex-wrap: wrap; gap: 
       <div class="about-body">
         <p>Soy cirujana dentista titulada de la Universidad Mayor y tengo un Diplomado en Estética de la Universidad de Chile. Llevo dos años atendiendo pacientes en odontología general y en estética facial, en Clínica Blossom, Temuco.</p>
         <p>Trabajo con calma y con mucha delicadeza. Me importa que te sientas cómodo, que entiendas cada paso del tratamiento y que tengas espacio para preguntar lo que necesites. Ir al dentista no tiene por qué ser una experiencia incómoda.</p>
-        <figure class="pull">
-          <blockquote>“Mano suavecita”</blockquote>
-          <figcaption>Lo que más me dicen mis pacientes al terminar la sesión.</figcaption>
-        </figure>
       </div>
+    </div>
+  </section>
+
+  <section class="block voices" id="pacientes" aria-labelledby="pacientes-titulo">
+    <div class="wrap">
+      <div class="voices-head">
+        <p class="eyebrow">Pacientes</p>
+        <h2 id="pacientes-titulo">Lo que dicen <em>mis pacientes</em></h2>
+      </div>
+      <ul class="voices-list">
+        <li class="voice"><blockquote>Increíble atención.</blockquote></li>
+        <li class="voice"><blockquote>Increíbles resultados.</blockquote></li>
+        <li class="voice"><blockquote>Inteligente y agradable, <em>recomendadísima.</em></blockquote></li>
+        <li class="voice"><blockquote>No sentí dolor.</blockquote></li>
+        <li class="voice"><blockquote>Siempre tuve miedo a las agujas, pero <em>con ella es distinto.</em></blockquote></li>
+      </ul>
     </div>
   </section>
 
@@ -470,6 +506,27 @@ footer .wrap { padding-block: 1.5rem 2rem; display: flex; flex-wrap: wrap; gap: 
       } catch (e) { fallback(); }
     });
   });
+
+  // Testimonios que aparecen al bajar
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || !("IntersectionObserver" in window)) return;
+    var voices = document.querySelectorAll(".voice");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("is-waiting");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.2 });
+    voices.forEach(function (v) {
+      if (v.getBoundingClientRect().top > window.innerHeight) {
+        v.classList.add("is-waiting");
+        io.observe(v);
+      }
+    });
+  })();
 </script>
 </body>
 </html>
